@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SPACE ROCKS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.js"></script>
+    <script type='text/javascript' src='/d3/d3.js'></script>
+    <script type='text/javascript' src='/three.js/build/three.min.js'></script>
+    <script type='text/javascript' src='/tween.js/src/Tween.js'></script>
+    <script type='text/javascript' src='/three.js/renderers/CanvasRenderer.js'></script>
+    <script type='text/javascript' src='/three.js/renderers/Projector.js'></script>
+    <script type='text/javascript' src='/assets/js/parse-asteroids.js'></script>
+    <script type='text/javascript' src='/assets/js/sampleJSONdata.js'></script>
+    <script type='text/javascript' src='/assets/js/sampleNASAdata.js'></script>
+    <script type='text/javascript' src='/assets/js/scripts.js'></script>
+    <script type='text/javascript' src='/assets/js/app.js'></script>
+  </head>
+  <body>
+    <div id="space-bg">
+      <div id="stars1"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+    </div>
+    <div id="earth"></div>
+    <div ng-app="SpaceRocks">
+      <div id="space-data" ng-view >
+       
+      </div>
+      <div id="asteroids" ng-controller="ViewController" ng-show="checkViewStatus()"></div>
+    </div>
+
+    <!-- <script type='text/javascript' src='/assets/js/earth.js'></script> -->
+
+  </body>
+</html>

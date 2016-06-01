@@ -1,0 +1,22 @@
+{
+  "name": "space-rocks",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Anna Concepcion <anna.concepcion@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^3.5.17",
+    "tween.js": "tweenjs#^16.3.4",
+    "three.js": "threejs#*"
+  }
+}
