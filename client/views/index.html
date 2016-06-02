@@ -20,20 +20,34 @@
     <script type='text/javascript' src='/assets/js/app.js'></script>
   </head>
   <body>
+    <!-- Starry, starry night -->
     <div id="space-bg">
       <div id="stars1"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
     </div>
-    <div id="earth"></div>
-    <div ng-app="SpaceRocks">
-      <div id="space-data" ng-view >
-       
+
+
+    <div id="wrapper">
+      <!-- Fly me to the moon -->
+      <div id="moon"></div>
+
+      <div id="asteroids"ng-app="SpaceRocks">
+        <!-- <div id="space-data" ng-view ></div> -->
+        <div id="asteroid-field" ng-controller="ViewController" ng-show="checkViewStatus()"></div>
       </div>
-      <div id="asteroids" ng-controller="ViewController" ng-show="checkViewStatus()"></div>
+
+
+      <!-- Beatiful Big Blue -->
+      <div id="earth"></div>  
+
     </div>
 
-    <!-- <script type='text/javascript' src='/assets/js/earth.js'></script> -->
+
+
+    <div id="asteroid-info"></div>
+
+    <script type='text/javascript' src='/assets/js/earth.js'></script>
 
   </body>
 </html>

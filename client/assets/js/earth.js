@@ -1,18 +1,16 @@
 $(function(){
  
   var earth = $('#earth');
-
   var width  = window.innerWidth,
       height = window.innerHeight;
 
   // Earth params
-  var radius   = 0.5,
-      segments = 32,
-      rotation = 6;  
+  // var radius   = 0.5,
+  //     segments = 32,
+  var rotation = 6;  
 
   var scene = new THREE.Scene();
-
-  var camera = new THREE.PerspectiveCamera(100, width / height, 0.1, 2000);
+  var camera = new THREE.PerspectiveCamera(39, width / height, 1, 1000);
   camera.position.z = 1.5;
 
   // var renderer = new THREE.WebGLRenderer();
@@ -26,32 +24,33 @@ $(function(){
   light.position.set(5,3,5);
   scene.add(light);
 
-  var sphere = createSphere(radius, segments);
-  sphere.rotation.y = rotation; 
-  scene.add(sphere)
+  var earthSphere = createSphere(0.5, 32, '/assets/images/world.jpg');
+  earthSphere.rotation.y = rotation; 
+  scene.add(earthSphere)
+
 
 
 
   $(earth).append(renderer.domElement);
-
+  
   render();
 
   function render() {
-    // controls.update();
-    sphere.rotation.y += 0.0005;
-    // clouds.rotation.y += 0.0005;    
+ 
+    earthSphere.rotation.y += 0.0005;
+    
     requestAnimationFrame(render);
     renderer.render(scene, camera);
   }
 
 
   
-  function createSphere(radius, segments) {
+  function createSphere(radius, segments, imageUrl) {
     var loader = new THREE.TextureLoader();
     return new THREE.Mesh(
       new THREE.SphereGeometry(radius, segments, segments),
       new THREE.MeshPhongMaterial({
-        map:   loader.load('/assets/images/world.jpg')
+        map:   loader.load(imageUrl)
       })
     );
   }

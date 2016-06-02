@@ -21,6 +21,12 @@ app.get('/', function(req, res){
 });
 
 
+app.get("/data/:file", function(req, res){
+  console.log("Sending " + req.params.file );
+  res.sendFile( path.resolve( __dirname + "/data/" + req.params.file ) );
+});
+
+
 // process.env.PORT is needed for when we deploy to Heroku
 var port = process.env.PORT || 3000;
 app.listen( port, function() {

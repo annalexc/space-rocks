@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-html, body, #space-data, #earth, #asteroids {
+html, body, #space-data, #earth, #space-bg, #stars1, #stars2, #stars3, #wrapper, #asteroid-field {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -16,31 +16,36 @@ body {
   font: 2rem 'Futura';
 }
 
-#space-bg, #stars1, #stars2, #stars3, #asteroids {
+#space-bg, #stars1, #stars2, #stars3 {
   position: absolute;
   top: 0;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-
-#space-bg, #stars1, #stars2, #stars3 {
   height: 200vh;
 }
 
-#space-data {
+/*#space-data {
    z-index: 100;
-}
+}*/
 
-#earth{
-  height: 50%;
+
+#wrapper {
   position: absolute;
-  bottom: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
-#asteroids {
-  /*background-color: red;*/
+#moon, #asteroids, #earth {
+  position: relative;
+  width: 100%;
+  float: left;
 }
+
+#moon{ height: 20%; }
+#asteroids { height: 50%; }
+#earth{ height: 30%; }
+
+
 
 canvas {
   position: relative;
@@ -51,48 +56,20 @@ canvas {
   border: 1px solid white;
   box-shadow: 0px 0px 12px 4px rgba(255,255,255,0.25);
 }
+.star1 { opacity: 0.4; }
+.star2 { opacity: 0.55; }
+.star3 { opacity: 0.7; }
 
-.star1 {
-  opacity: 0.45;
+#stars1 { animation: starFlight 270s linear infinite; }
+#stars2 { animation: starFlight 170s linear infinite; }
+#stars3 { animation: starFlight 70s linear infinite; }
+
+
+
+#asteroid-info {
+  position: absolute;
+  font-size: 1rem;
 }
-
-.star2 {
-  opacity: 0.6;
-}
-
-.star3 {
-  opacity: 0.75;
-}
-
-
-#stars1 {
-  animation: starFlight 270s linear infinite;
-}
-
-#stars2 {
-  animation: starFlight 170s linear infinite;
-}
-
-#stars3 {
-  animation: starFlight 70s linear infinite;
-}
-
-
-#ce span {
-        display: none;
-      }
-
-      #ce {
-        width: 107px;
-        height: 55px;
-        display: block;
-        position: absolute;
-        bottom: 15px;
-        left: 20px;
-        background: url(/globe/ce.png);
-      }
-
-
 circle {
   stroke: gold;
   /*animation: asteroidFlight 20s linear 1;*/
