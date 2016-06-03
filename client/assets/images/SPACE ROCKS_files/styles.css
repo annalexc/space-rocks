@@ -38,10 +38,6 @@ text {
   color: white !important;
 }
 
-circle {
-  cursor: pointer;
-}
-
 
 #space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3 {
   position: absolute;
@@ -182,7 +178,7 @@ circle {
 
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 @keyframes starFlight {

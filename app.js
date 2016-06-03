@@ -2,7 +2,9 @@ var express         = require('express'),
     morgan          = require('morgan'),
     path            = require('path'),
     mongoose        = require('mongoose'),
-    app             = express();
+    app             = express(),  
+    apiAsteroidRouter = require('./server/routes/api/asteroids.js');
+
 
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/spacerocks" );
 
@@ -21,10 +23,14 @@ app.get('/', function(req, res){
 });
 
 
+app.use('/api/asteroids', apiAsteroidRouter);
+
 app.get("/data/:file", function(req, res){
   console.log("Sending " + req.params.file );
   res.sendFile( path.resolve( __dirname + "/data/" + req.params.file ) );
 });
+
+
 
 
 // process.env.PORT is needed for when we deploy to Heroku
