@@ -7,7 +7,8 @@ function parseAsteroidData(data, callback){
   // Iterate through the asteroid data array
   for(var key in neos){
     for(var i = 0; i < neos[key].length; i++){
-      if (parseFloat(neos[key][i].close_approach_data[0].miss_distance.lunar) <= 1){
+      var checkId = asteroidData.map(function(x){return x.neo_reference_id; }).indexOf(neos[key][i].neo_reference_id);
+      if ((parseFloat(neos[key][i].close_approach_data[0].miss_distance.lunar) <= 1) && checkId < 0){
         asteroidData.push({
           "name"  : neos[key][i].name,
           "year" : key.substr(0,4),
@@ -44,7 +45,7 @@ function parseOrbitData(){
 function combineAsteroidOrbitData(data){
   for(var i = 0; i < asteroidData.length; i++){
     var neoId = asteroidData[i].neo_reference_id;
-    if(data.neo_reference_id == neoId){
+    if(data.neo_reference_id == neoId && asteroidData[i].orbital_data.length == 0){
       asteroidData[i].orbital_data.push(data.orbital_data);
     };
   };
