@@ -30,21 +30,25 @@
     </div>
 
 
-    <div id="wrapper">
+    
       <button>CLICK ME</button>
-      <!-- Fly me to the moon -->
-      <div id="moon">
-        <img src="/assets/images/moon.png">
-      </div>
-
-      <div id="asteroids"ng-app="SpaceRocks">
+    <div id="wrapper-scaled">
+      <!-- Beatiful Big Blue -->
+      <div id="earth-scaled">
+        <img src="/assets/images/earth.png">
+      </div>  
+    
+      <div id="asteroids-scaled" ng-app="SpaceRocks">
         <!-- <div id="space-data" ng-view ></div> -->
         <div id="asteroid-field" ng-controller="ViewController" ng-show="checkViewStatus()"></div>
       </div>
 
+      <!-- Fly me to the moon -->
+      <div id="moon-scaled">
+        <img src="/assets/images/moon.png">
+      </div>
 
-      <!-- Beatiful Big Blue -->
-      <div id="earth"></div>  
+      
 
     </div>
 
