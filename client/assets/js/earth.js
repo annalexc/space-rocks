@@ -1,17 +1,12 @@
 function renderGlobe(){
   var earth = $('#earth');
-  // var width  = window.innerWidth,
-  //     height = window.innerHeight;
-
-  var width =  46,
-      height = 736;
-
-      console.log(width);
+  var width  = window.innerWidth,
+      height = window.innerHeight;
 
   var rotation = 6;  
 
   var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(50, width / height, 1, 1000);
+  var camera = new THREE.PerspectiveCamera(39, width / height, 1, 1000);
   camera.position.z = 1.5;
 
   // var renderer = new THREE.WebGLRenderer();
@@ -25,7 +20,7 @@ function renderGlobe(){
   light.position.set(5,3,5);
   scene.add(light);
 
-  var earthSphere = createSphere(0.044, 32, '/assets/images/world.jpg');
+  var earthSphere = createSphere(0.5, 32, '/assets/images/world.jpg');
   earthSphere.rotation.y = rotation; 
   scene.add(earthSphere)
 
@@ -49,4 +44,3 @@ function renderGlobe(){
     );
   }
 };
-

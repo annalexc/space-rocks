@@ -28,28 +28,36 @@
       <div id="stars2"></div>
       <div id="stars3"></div>
     </div>
+    <button>VELOCITY</button>
+    <button id="scale">SCALE</button>
 
 
-    
+    <div id="wrapper">
       <button>CLICK ME</button>
-    <div id="wrapper-scaled">
-      <!-- Beatiful Big Blue -->
-      <div id="earth-scaled">
-        <img src="/assets/images/earth.png">
-      </div>  
-    
-      <div id="asteroids-scaled" ng-app="SpaceRocks">
+      <!-- Fly me to the moon -->
+      <div id="moon">
+        <img src="/assets/images/moon.png">
+      </div>
+      <div id="asteroids" ng-app="SpaceRocks">
         <!-- <div id="space-data" ng-view ></div> -->
         <div id="asteroid-field" ng-controller="ViewController" ng-show="checkViewStatus()"></div>
       </div>
+      <!-- Beatiful Big Blue -->
+      <div id="earth"></div>  
+    </div>
 
-      <!-- Fly me to the moon -->
+
+
+    <div id="wrapper-scaled" class="hidden">
+      <div id="earth-scaled">
+        <img src="/assets/images/earth.png">
+      </div>  
+      <div id="asteroids-scaled">
+        <div id="asteroid-field""></div>
+      </div>
       <div id="moon-scaled">
         <img src="/assets/images/moon.png">
       </div>
-
-      
-
     </div>
 
 
