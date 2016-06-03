@@ -1,8 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+
 * {
   box-sizing: border-box;
 }
 
-html, body, #space-data, #earth, #space-bg, #stars1, #stars2, #stars3, #wrapper, #asteroid-field {
+html, body, #space-data, #earth, #space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3, #wrapper, #asteroid-field {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -16,10 +18,54 @@ body {
   font: 2rem 'Futura';
 }
 
-#space-bg, #stars1, #stars2, #stars3 {
+img{
+  position: absolute;
+  top: -200px;
+  width: 400px;
+  clip: rect(200px,400px,400px,0px);
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+button {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1000;
+}
+
+canvas {
+  position: relative;
+  width: 100%;
+}
+
+text {
+  color: white !important;
+}
+
+
+#space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3 {
   position: absolute;
   top: 0;
   height: 200vh;
+}
+
+#star-img {
+  background: url('http://imgsrc.hubblesite.org/hu/db/images/hs-2006-01-a-xlarge_web.jpg') no-repeat;
+  background-size: cover;
+}
+
+#star-overlay {
+  background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.55) 0%, rgba(0,0,0,0.85) 75%);
+  position: absolute;
+
+}
+
+#space-bg {
+  
+  /*animation: starFlight 100s linear infinite;*/
 }
 
 /*#space-data {
@@ -28,7 +74,6 @@ body {
 
 
 #wrapper {
-  position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
@@ -41,38 +86,37 @@ body {
   float: left;
 }
 
-#moon{ height: 20%; }
-#asteroids { height: 50%; }
-#earth{ height: 30%; }
+#moon{ height: 15%; }
+#asteroids { height: 60%; }
+#earth{ height: 25%; }
 
-
-
-canvas {
-  position: relative;
-  width: 100%;
-}
-.star{
+.star {
   border-radius: 50%;
   border: 1px solid white;
   box-shadow: 0px 0px 12px 4px rgba(255,255,255,0.25);
 }
 .star1 { opacity: 0.4; }
-.star2 { opacity: 0.55; }
-.star3 { opacity: 0.7; }
+.star2 { opacity: 0.45; }
+.star3 { opacity: 0.6; }
 
 #stars1 { animation: starFlight 270s linear infinite; }
 #stars2 { animation: starFlight 170s linear infinite; }
 #stars3 { animation: starFlight 70s linear infinite; }
 
-
-
 #asteroid-info {
   position: absolute;
-  font-size: 1rem;
+  top: 0;
+  min-width: min-content;
+  min-height: min-content;
+  height: auto;
+  width: auto;
+  font: 1rem 'Oswald';
+  color: white;
 }
-circle {
-  stroke: gold;
-  /*animation: asteroidFlight 20s linear 1;*/
+
+.bold {
+  font-weight: 700;
+  color: hotpink;
 }
 
 

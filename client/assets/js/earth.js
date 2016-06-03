@@ -1,12 +1,8 @@
-$(function(){
- 
+function renderGlobe(){
   var earth = $('#earth');
   var width  = window.innerWidth,
       height = window.innerHeight;
 
-  // Earth params
-  // var radius   = 0.5,
-  //     segments = 32,
   var rotation = 6;  
 
   var scene = new THREE.Scene();
@@ -28,23 +24,16 @@ $(function(){
   earthSphere.rotation.y = rotation; 
   scene.add(earthSphere)
 
-
-
-
   $(earth).append(renderer.domElement);
   
   render();
 
   function render() {
- 
-    earthSphere.rotation.y += 0.0005;
-    
+    earthSphere.rotation.y += 0.0005;  
     requestAnimationFrame(render);
     renderer.render(scene, camera);
   }
 
-
-  
   function createSphere(radius, segments, imageUrl) {
     var loader = new THREE.TextureLoader();
     return new THREE.Mesh(
@@ -54,7 +43,5 @@ $(function(){
       })
     );
   }
+};
 
-
-
-}());

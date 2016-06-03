@@ -22,6 +22,8 @@
   <body>
     <!-- Starry, starry night -->
     <div id="space-bg">
+      <div id="star-img"></div>
+      <div id="star-overlay"></div>
       <div id="stars1"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
@@ -29,8 +31,11 @@
 
 
     <div id="wrapper">
+      <button>CLICK ME</button>
       <!-- Fly me to the moon -->
-      <div id="moon"></div>
+      <div id="moon">
+        <img src="/assets/images/moon.png">
+      </div>
 
       <div id="asteroids"ng-app="SpaceRocks">
         <!-- <div id="space-data" ng-view ></div> -->
@@ -45,7 +50,14 @@
 
 
 
-    <div id="asteroid-info"></div>
+    <div id="asteroid-info">
+      <div id="a-name"></div>
+      <div id="a-date"></div>
+      <div id="a-diametaer"></div>
+      <div id="a-distance"></div>
+      <div id="a-velocity"></div>
+      <div id="a-magnitude"></div>
+    </div>
 
     <script type='text/javascript' src='/assets/js/earth.js'></script>
 
