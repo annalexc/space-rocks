@@ -3,10 +3,8 @@ console.log("Space asteroids!");
 $(function(){
   // **** LIGHT UP THE NIGHT SKY ****//
   var starField = $("#space-bg");
-  // console.log(starField.height());
   createStarryNight(starField);
-
-
+  toggleScaleViewHandler();
   //**** ADD ASTEROIDS ****//
   renderAsteroids();
   //console.log(w);
@@ -16,6 +14,36 @@ $(function(){
   renderGlobe();
 
 }); // $(function(){}); END
+
+
+function toggleScaleViewHandler(){
+  $("#scale").on("click", function(){
+    var wrapperScaled = $("#wrapper-scaled");
+    var wrapper = $("#wrapper");
+    console.log("you clicked me!");
+
+    if($(wrapperScaled).hasClass('hidden')){
+      console.log(26);
+      $(wrapper).fadeOut(500, function(){
+        $(wrapper).addClass('hidden');
+        $(wrapperScaled).fadeIn(1000, function(){
+          $(wrapperScaled).removeClass('hidden');
+        });
+      });
+    } else {
+      $(wrapperScaled).fadeOut(500, function(){
+        $(wrapperScaled).addClass('hidden');
+        $(wrapper).fadeIn(1000, function(){
+          $(wrapper).removeClass('hidden');
+        });
+      });
+    };
+  });
+};
+
+
+
+
 
 function renderAsteroids(){
   var container = $("#asteroid-field");

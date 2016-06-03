@@ -18,22 +18,16 @@ body {
   font: 2rem 'Futura';
 }
 
-img{
-  position: absolute;
-  top: -200px;
-  width: 400px;
-  clip: rect(200px,400px,400px,0px);
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-}
+
 
 button {
   position: fixed;
-  left: 10px;
   bottom: 10px;
   z-index: 1000;
+}
+
+#scale {
+  left: 80px;
 }
 
 canvas {
@@ -72,23 +66,81 @@ text {
    z-index: 100;
 }*/
 
+/*#asteroids { width: 60%; }*/
 
-#wrapper {
+
+#wrapper, #wrapper-scaled {  
+  position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
 }
 
+
 #moon, #asteroids, #earth {
   position: relative;
   width: 100%;
   float: left;
 }
-
-#moon{ height: 15%; }
+#moon{ height: 98.1px; }
+#moon img {
+  position: absolute;
+  top: -98.1px;
+  width: 196.3px;
+  clip: rect(98.1px,196.3px,196.3px,0px);
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
 #asteroids { height: 60%; }
 #earth{ height: 25%; }
+
+
+/* SCALED VIEW STYLYING */
+
+#wrapper-scaled {
+  background-color: rgba(0,0,0,0.25);
+}
+#earth-scaled, #moon-scaled, #asteroids-scaled {
+  position: absolute;
+  height: 100%;
+}
+
+#earth-scaled, #moon-scaled {
+  display: flex;
+  align-items: center;
+}
+
+#earth-scaled { 
+  width: 52px; 
+  left: 0;
+}
+
+#earth-scaled img {
+  width: 46px;
+  height: 46px;
+  margin-left: 6px;
+}
+
+#asteroids-scaled { 
+  visibility: hidden;
+  width: 1350.7px;
+  left: 52px;
+}
+
+#moon-scaled {
+  width: 46px;
+  left: 1402.7px;
+  
+}
+
+
+#moon-scaled img {
+  height: 12.56px;
+  width: 12.56px;
+}
 
 .star {
   border-radius: 50%;
@@ -119,6 +171,10 @@ text {
   color: hotpink;
 }
 
+
+.hidden {
+  display: none;
+}
 
 @keyframes starFlight {
   from { 
