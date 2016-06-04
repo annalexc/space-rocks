@@ -43,7 +43,7 @@ function renderGlobe(){
         map:   loader.load(imageUrl)
       })
     );
-  }
+  };
 };
 
 

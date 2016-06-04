@@ -3,7 +3,7 @@ var router = express.Router();
 var Asteroid = require('../../models/asteroid');
 
 
-// GET ALL THE Asteroids!
+// Get all Asteroids!
 router.get('/', function(req, res, next){
   Asteroid.find({}).sort({createdAt: -1}).exec(function(err, asteroidData){
     console.log(asteroidData);
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next){
 
 
 
-// GET A SINGLE Asteroid!
+// Get a SINGLE Asteroid!
 router.get('/:id', function(req, res, next){
   var id = req.params.id;
   console.log(id);
@@ -26,13 +26,25 @@ router.get('/:id', function(req, res, next){
       res.status(404).end();
     }else {
       res.json(response);
-    }
+    };
+  });
+});
+
+
+// Get all Asteroids by year!
+router.get('/year/:year', function(req, res, next){
+  var year = req.params.year;
+  Asteroid.find({year: year}, function(err, response){
+    if (err) {
+      res.status(404).end();
+    }else {
+      res.json(response);
+    };
   })
 });
 
 
-
-// POST NEW Asteroid!
+// POST a new Asteroid!
 router.post('/', function(req, res, next){
   console.log(req.body);
   if (!req.body.asteroid) {
@@ -44,19 +56,6 @@ router.post('/', function(req, res, next){
   };
 });
 
-
-
-// DELETE
-router.delete('/:id', function(req, res, next){
-  var id = req.params.id;
-  Asteroid.findByIdAndRemove(id, function(err){
-    if (err) {
-      res.status(500).end();
-    }else {
-      res.status(204).end();
-    }
-  })
-});
 
 
 module.exports = router;
