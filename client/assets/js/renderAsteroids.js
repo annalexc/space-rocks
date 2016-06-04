@@ -1,42 +1,47 @@
-function renderAsteroids(){
+// ***************************** //
+// ********* CONSTANTS ********* //
+// ***************************** //
+
+// Moon mean orbital velocity = 1.022 km/s
+var MOON_VELOCITY = 1.022;
+// Moon relative diameter to earth = 0.273
+var MOON_EARTH_D_RATIO = 0.273;
+// Color for brightest asteroid: hsl(188,100%,52%);
+
+function displayAsteroidsByYear(year){
+  getData('/api/asteroids/year/'+year, function(spaceRocks){
+    renderAsteroids(spaceRocks);
+  });
+};
+
+function renderAsteroids(spaceRocks){
   var container = $("#asteroid-field");
+  container.empty();
   var w = parseInt($(container).css("width")),
       h = parseInt($(container).css("height")),
       mLeft = parseInt($(container).css("margin-left")),
       mRight = parseInt($(container).css("margin-right"));
-  
-
-  // Color for brightest asteroid: hsl(188,100%,52%);
-  
-  // Moon mean orbital velocity = 1.022 km/s
-  var MOON_VELOCITY = 1.022;
-
-  // Moon relative diameter to earth = 0.273
-
- 
-  
 
   // Load JSON asteroid data and intialize d3 rendering
-  var asteroidD3 = d3.json("/data/neosLD.json", function(spaceRocks){
+  // var asteroidD3 = d3.json("data/neos-by-year.json", function(spaceRocks){
     
-    
-    var data = spaceRocks.slice();
-    var dateTimeFormat = d3.time.format("%Y-%m-%d");
-    var dateFormat = d3.time.format("%a %b %d %Y");
-    var toString = d3.format(",d");
-    var yearFormat = d3.time.format("%Y");
-    var decimalFormat = d3.format(".2f");
+  var data = spaceRocks.slice();
+  var dateTimeFormat = d3.time.format("%Y-%m-%d");
+  var dateFormat = d3.time.format("%a %b %d %Y");
+  var toString = d3.format(",d");
+  var yearFormat = d3.time.format("%Y");
+  var decimalFormat = d3.format(".2f");
 
 
 
-    var dateTimeFn = function(d) { return dateTimeFormat.parse(d.closest_approach) };
-    var dateTimeFn2 = function(input) { return dateTimeFormat(input) };
-    var dateFn = function(d) { return dateFormat(dateTimeFn(d)) }
-    var yearFn = function(d) { return yearFormat(dateTimeFn(d)) };
-    var distanceFn = function(d) { return d.miss_distance };
-    var radiusFn = function(d) { return d.estimated_diameter/2 };
-    var absMagnitudeFn = function(d) { return d.absolute_magnitude_h };
-    var relVelocityFn = function(d) { return d.kilometers_per_second };
+  var dateTimeFn = function(d) { return dateTimeFormat.parse(d.closest_approach) };
+  var dateTimeFn2 = function(input) { return dateTimeFormat(input) };
+  var dateFn = function(d) { return dateFormat(dateTimeFn(d)) }
+  var yearFn = function(d) { return yearFormat(dateTimeFn(d)) };
+  var distanceFn = function(d) { return d.miss_distance };
+  var radiusFn = function(d) { return d.estimated_diameter/2 };
+  var absMagnitudeFn = function(d) { return d.absolute_magnitude_h };
+  var relVelocityFn = function(d) { return d.kilometers_per_second };
 
     // console.log(dateTimeFn2(new Date));
     // var majAxisFn = function(d) { return d.orbital_data.}
@@ -79,7 +84,8 @@ function renderAsteroids(){
       // console.log(d3.extent(data, relVelocityFn));
     
     // Select asteroid field to append space objects   
-    var asteroidField = d3.select("#asteroid-field").append("svg:svg")
+    var asteroidField = d3.select("#asteroid-field")
+      .append("svg:svg")
       .attr("width", w)
       .attr("height", h) 
       // console.log(w);
@@ -231,7 +237,7 @@ function renderAsteroids(){
     }
 
 
-    function fly() {
+    function fly(){
       console.log("clicked!");
 
       var asteroid = asteroidGroup.selectAll(".asteroid");
@@ -250,5 +256,6 @@ function renderAsteroids(){
           .ease('linear')
           // .each("end", repeat);
       })()};
-    });
+    
+    // });
 };
