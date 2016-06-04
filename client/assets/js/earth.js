@@ -2,9 +2,9 @@ function renderGlobe(){
   
   var earth = $("#earth");
   var width  = window.innerWidth,
-      height = window.innerHeight;
+      height = 600;
 
-  var rotation = 6;  
+  var rotation = 10;  
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(39, width / height, 1, 1000);
