@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700);
 
 * {
   box-sizing: border-box;
@@ -60,18 +61,6 @@ circle {
 
 }
 
-#space-bg {
-  
-  /*animation: starFlight 100s linear infinite;*/
-}
-
-/*#space-data {
-   z-index: 100;
-}*/
-
-/*#asteroids { width: 60%; }*/
-
-
 #wrapper, #wrapper-scaled {  
   position: absolute;
   height: 100%;
@@ -121,35 +110,6 @@ circle {
   align-items: center;
 }
 
-/*#earth-scaled { 
-  width: 52px; 
-  left: 0;
-}
-
-#earth-scaled img {
-  width: 46px;
-  height: 46px;
-  margin-left: 6px;
-}
-
-#asteroids-scaled { 
-  visibility: hidden;
-  width: 1350.7px;
-  left: 52px;
-}
-
-#moon-scaled {
-  width: 46px;
-  left: 1402.7px;
-  
-}
-
-
-#moon-scaled img {
-  height: 12.56px;
-  width: 12.56px;
-}*/
-
 #earth-scaled { 
   width: 3.619vw; 
   left: 0;
@@ -172,10 +132,8 @@ circle {
 
 #moon-scaled {
   width: 2.385vw;
-  left: 97.615vw;
-  
+  left: 97.615vw;  
 }
-
 
 #moon-img {
   position: relative;
@@ -185,8 +143,7 @@ circle {
   width: 0.875vw;
 }
 
-
-
+/* STARS! */
 .star {
   border-radius: 50%;
   border: 1px solid white;

@@ -9,14 +9,10 @@ $(function(){
   toggleScaleViewHandler();
   
   //**** ADD ASTEROIDS ****//
-  // renderAsteroids();
+  displayAsteroidsByYear(2016);
   
 
-
-
   renderGlobe();
-
-  // window.onresize = resizeCanvas;
 
 }); // $(function(){}); END
 
