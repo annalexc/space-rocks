@@ -50,7 +50,7 @@ circle {
 }
 
 #star-img {
-  background: url('http://imgsrc.hubblesite.org/hu/db/images/hs-2006-01-a-xlarge_web.jpg') no-repeat;
+  background: url('/assets/images/orion-nebula-hubblesite.jpg') no-repeat;
   background-size: cover;
 }
 
@@ -121,7 +121,7 @@ circle {
   align-items: center;
 }
 
-#earth-scaled { 
+/*#earth-scaled { 
   width: 52px; 
   left: 0;
 }
@@ -148,7 +148,44 @@ circle {
 #moon-scaled img {
   height: 12.56px;
   width: 12.56px;
+}*/
+
+#earth-scaled { 
+  width: 3.619vw; 
+  left: 0;
 }
+
+#earth-img {
+  position: relative;
+  background: url('/assets/images/earth.png') no-repeat;
+  background-size: cover;
+  width: 3.202vw;
+  height: 3.202vw;
+  margin-left: 0.417vw;
+}
+
+#asteroids-scaled { 
+  visibility: hidden;
+  width: 93.996vw;
+  left: 3.619vw;
+}
+
+#moon-scaled {
+  width: 2.385vw;
+  left: 97.615vw;
+  
+}
+
+
+#moon-img {
+  position: relative;
+  background: url('/assets/images/moon.png') no-repeat;
+  background-size: cover;
+  height: 0.875vw;
+  width: 0.875vw;
+}
+
+
 
 .star {
   border-radius: 50%;
@@ -182,8 +219,9 @@ circle {
 
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
+
 
 @keyframes starFlight {
   from { 
