@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
 @import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700);
 
 * {
@@ -13,10 +14,9 @@ html, body, #space-data, #earth, #space-bg, #star-img, #star-overlay, #stars1, #
 
 body {
   background-color: black;
-  background: radial-gradient(ellipse at bottom, rgb(27,39,53) 0%, black 80%);
-  overflow: hidden;
+  /*background: radial-gradient(ellipse at bottom, rgb(27,39,53) 0%, black 80%);*/
   color: white;
-  font: 2rem 'Futura';
+  font: 1rem 'Slabo 27px';
 }
 
 
@@ -24,6 +24,7 @@ button {
   position: fixed;
   bottom: 10px;
   z-index: 1000;
+
 }
 
 #scale {
@@ -70,40 +71,69 @@ circle {
   width: 100%;
   top: 0;
   left: 0;
+  overflow: hidden;
+}
+
+#wrapper {
+  height: 100vh;
 }
 
 
-#moon, #asteroids, #earth {
+#moon, #lunar-distance, #earth {
   position: relative;
   width: 100%;
   float: left;
 }
+
 #moon{ 
-  min-height: 98.1px; 
-  height: 15%;
+  min-height: 81.9px; 
+  height: 10vh;
 }
 #moon img {
   position: absolute;
-  top: -98.1px;
-  width: 196.3px;
-  clip: rect(98.1px,196.3px,196.3px,0px);
+  top: -81.9px;
+  width: 163.8px;
+  /*clip: rect(81.9px,163.8px,163.8px,0px);*/
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
 }
-#asteroids { 
-  height: 60%; }
 
-#earth{ height: 25%; }
+#lunar-distance { 
+  height: 80vh; 
+  /*overflow: hidden;*/
 
+}
+
+#asteroid-field {
+  height: 100%;
+  /*height: 150vh;*/
+}
+
+#asteroid-all {
+  position: absolute;
+  width: 100%;
+  height: 170vh;
+  top: 0;
+}
+
+svg {
+  overflow: visible;
+}
+
+#earth{ 
+  height: 30vh; 
+  overflow: hidden;
+  /*background-color: rgba(45,201,11,0.2)*/
+}
 
 /* SCALED VIEW STYLYING */
 
 #wrapper-scaled {
   background-color: rgba(0,0,0,0.25);
 }
-#earth-scaled, #moon-scaled, #asteroids-scaled {
+#earth-scaled, #moon-scaled, #lunar-distance-scaled {
   position: absolute;
   height: 100%;
 }
@@ -127,7 +157,7 @@ circle {
   margin-left: 0.417vw;
 }
 
-#asteroids-scaled { 
+#lunar-distance-scaled { 
   visibility: hidden;
   width: 93.996vw;
   left: 3.619vw;
@@ -177,11 +207,111 @@ circle {
   color: hotpink;
 }
 
-
 .hidden {
   display: none;
 }
 
+.axis {
+  stroke: rgba(255,255,255,0.35);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.axis text {
+  stroke: none;
+  fill: rgba(255,255,255,0.35);
+}
+
+.name-label, .dist-label {
+  font-family:'Oswald';
+}
+
+.name-label {
+  font-size: 0.75rem;
+  fill: rgba(255,255,255,0.85);
+}
+
+.dist-label{
+  font-size: 0.68rem;
+  fill: hotpink;
+}
+/*.intro-moon {
+  animation: setMoon 4s linear 1;
+}*/
+
+
+#scrollbar {
+  position: fixed;
+  top: 11vh;
+  height: 75vh;
+  right: 50px;
+  width: 15px;
+  overflow: all;
+}
+
+#bar {
+  margin: 0 auto;
+  width: 4px;
+  height: 100%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+#bar, #scroll {
+  border-bottom-left-radius: 0.35em;
+  border-bottom-right-radius: 0.35em;
+  border-top-left-radius: 0.35em;
+  border-top-right-radius: 0.35em;
+}
+
+#scroll, #scroll-msg, #guide {
+  position: fixed;
+  /*width: 100%;*/
+  top: 11vh;
+  min-width: min-content;
+}
+
+#scroll-msg {
+   z-index: -10;
+}
+
+#guide {
+  /*position: absolute;*/
+  width: 100%;
+  height: 3px;
+  left:0;
+  background-color: rgba(255,255,255,0.3);
+}
+
+#scroll {  
+  right: 25px;
+  height: 0;
+  width: 78px;
+}
+
+#scroll-msg{
+  right: 117px;
+}
+#scrollbar p {
+  text-align: right;
+  font: 1.2rem 'Slabo 27px';
+  line-height: 1;
+  right: 107px;
+  margin: 10px auto 0;
+}
+
+#scrollbar span {
+  font-weight: 700;
+  color: hotpink;
+  line-height: 0.8;
+  font: 1.9rem 'Oswald';
+}
+
+#scroll:hover{
+  cursor: pointer;
+}
+#scroll img {
+  margin-top: -10px;
+}
 
 @keyframes starFlight {
   from { 
@@ -198,5 +328,15 @@ circle {
   }
   to {    
     transform: translateX(3000px);
+  }
+}
+
+@keyframes setMoon {
+  from{
+    top: 25vh;
+  }
+  to{
+    top: -81.9px;
+    /*clip: rect(81.9px,163.8px,163.8px,0px);*/
   }
 }

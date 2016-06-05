@@ -22,12 +22,12 @@ function displayAsteroidsByYearToScale(year){
 };
 
 function renderAsteroids(spaceRocks){
-  var container = $("#asteroid-field");
+  // var container = $("#asteroid-field");
   container.empty();
-  var w = parseInt($(container).css("width")),
-      h = parseInt($(container).css("height")),
-      mLeft = parseInt($(container).css("margin-left")),
-      mRight = parseInt($(container).css("margin-right"));
+  // var w = parseInt($(container).css("width")),
+  //     h = parseInt($(container).css("height")),
+  //     mLeft = parseInt($(container).css("margin-left")),
+  //     mRight = parseInt($(container).css("margin-right"));
 
   // Load JSON asteroid data and intialize d3 rendering
   // var asteroidD3 = d3.json("data/neos-by-year.json", function(spaceRocks){
@@ -114,23 +114,6 @@ function renderAsteroids(spaceRocks){
     //* ISN'T THIS RENDERING? **//
     //**************************//
 
-
-
-
-
-    // Render center axis to represent closest approach date
-    // var approachAxis = asteroidField.append("line")
-    //   .attr("x1", w/2)  
-    //   .attr("y1", 0)
-    //   .attr("x2", w/2)  //<<== and here
-    //   .attr("y2", h)
-    //   .style("stroke-width", 1)
-    //   .style("stroke", "red")
-    //   .style("fill", "none");
-
-
-
-
     var asteroidGroup = asteroidField.append("g");
 
     //**************************//
@@ -160,11 +143,7 @@ function renderAsteroids(spaceRocks){
         return d.closest_approach
       });
 
-      
-
-    
-
-
+ 
     //**************************//
     //*** ASTEROID GRADIENTS ***//
     //**************************//
@@ -274,16 +253,12 @@ function renderAsteroids(spaceRocks){
 
 
 function renderAsteroidsToScale(spaceRocks){
-  var container = $("#asteroid-field");
-  container.empty();
-  var w = parseInt($(container).css("width")),
-      h = parseInt($(container).css("height"))*2,
-      mLeft = parseInt($(container).css("margin-left")),
-      mRight = parseInt($(container).css("margin-right"));
+  containerAll.empty();
+  // w = parseInt($(containerAll).css("width")),
+  h = parseInt($(containerAll).css("height")),
+  mLeft = parseInt($(containerAll).css("margin-left")),
+  mRight = parseInt($(containerAll).css("margin-right"));
 
-  // Load JSON asteroid data and intialize d3 rendering
-  // var asteroidD3 = d3.json("data/neos-by-year.json", function(spaceRocks){
-    
   var data = spaceRocks.slice();
   var dateTimeFormat = d3.time.format("%Y-%m-%d");
   var dateFormat = d3.time.format("%a %b %d %Y");
@@ -291,8 +266,7 @@ function renderAsteroidsToScale(spaceRocks){
   var yearFormat = d3.time.format("%Y");
   var decimalFormat = d3.format(".4f");
 
-
-
+ 
   var dateTimeFn = function(d) { return dateTimeFormat.parse(d.closest_approach) };
   var dateTimeFn2 = function(input) { return dateTimeFormat(input) };
   var dateFn = function(d) { return dateFormat(dateTimeFn(d)) }
@@ -305,25 +279,27 @@ function renderAsteroidsToScale(spaceRocks){
     // console.log(dateTimeFn2(new Date));
     // var majAxisFn = function(d) { return d.orbital_data.}
     // Time Scale here for now. May choose to remove later.
-    // var timeScale = d3.time.scale()
-    //   .domain([d3.min(data, dateTimeFn), new Date])
-    //   .range([20, w])
-      
-    // console.log(d3.min(data, dateTimeFn))
-    // console.log((new Date));
+    var timeScale = d3.time.scale()
+      .domain(d3.extent(data, dateTimeFn))
+      .range([0.1*w, 0.75*w])
 
     // Scale for asteroid miss distance. May change this if orbital movement can be incorporated
     var missDistScale = d3.scale.linear()
       .domain(d3.extent(data, distanceFn))
-      .range([h,0])
-      // console.log(d3.extent(data, distanceFn));
-
+      // .range([h*d3.max(data, distanceFn)-20,h*d3.min(data, distanceFn)+50])
+      .range([h-81.9, 90])
+      
     // Scale for asteroid estimated radius
     var radiusScale = d3.scale.linear()
       .domain(d3.extent(data, radiusFn))
       // .range([4,15])
       .range([5,20])
 
+    // Scale for asteroid estimated radius
+    var radiusXScale = d3.scale.linear()
+      .domain(d3.extent(data, radiusFn))
+      // .range([4,15])
+      .range([0.1*w,0.65*w])
 
     // Scale for asteroid absolute magnitude
     var absMagScale = d3.scale.linear()
@@ -332,14 +308,41 @@ function renderAsteroidsToScale(spaceRocks){
       // .range([54,0]) // yellow to red
       .range([321,188])
 
-  
-    // Select asteroid field to append space objects   
-    var asteroidField = d3.select("#asteroid-field")
-      .append("svg:svg")
-      .attr("width", w)
-      .attr("height", h) 
-      // console.log(w);
+    var yAxis = d3.svg.axis()
+      .scale(missDistScale)
+      .orient("right")
+      .ticks(5);
 
+
+
+
+    // Select asteroid field to append space objects   
+    var asteroidField = d3.select("#asteroid-all")
+      .append("svg:svg")
+      // .attr("preserveAspectRatio", "xMinYMin meet")
+      // .attr("viewBox", function(d){ return "0 0 " + w + " " + h})
+      .attr("width", w)
+      .attr("height", h)
+
+    // asteroidField.append("g")
+    //   .attr("class", "axis")
+    //   .attr("transform", "translate(30,0)")
+    //   // .attr("fill", "white")
+    //   .call(yAxis); 
+
+    asteroidField.append("svg:image")
+      .attr("x", w/2-81.9)
+      .attr("y", -85)
+      // .attr("class", "sun")
+      // .attr("src", "/assets/images/moon.png")
+      .attr("xlink:href", "/assets/images/moon.png")
+      .attr("width", 163.8)
+      .attr("height", 163.8)
+      .style("position", "absolute")
+      .style("left", 0)
+      .style("right", 0)
+      .style("margin", "0 auto")
+      // .attr("text-anchor", "middle"); 
 
 
     var asteroidGroup = asteroidField.append("g");
@@ -350,21 +353,48 @@ function renderAsteroidsToScale(spaceRocks){
 
     var asteroid = asteroidGroup.selectAll("g.asteroid")
       .data(data)
-      .enter()      
+      .enter()
+      .append("g");
+
+    asteroid.append("a")
+    var link = asteroidGroup.selectAll("a")
+      .attr("xlink:href", function(d) { return d.url; }) 
+      .attr("target", "_blank")  
       .append("svg:circle")
       .attr("class", "asteroid")
       .attr("r", function(d) { return radiusScale(radiusFn(d)) })
-      .attr("cx", w/2)
+      .attr("cx", function(d) { return timeScale(dateTimeFn(d)) })
       .attr("cy", function(d) { return missDistScale(distanceFn(d)) })
+      .attr("xlink:href", function(d) { return d.url; })
       .style("fill", function(d) { return "url(#grad" + generateHue(d) + ")"})
       // .style("fill", function(d){ return "hsl(" + generateHue(d) + ",100%,57%)" })
       .style("stroke-opacity", 0.25)
       .style("stroke-width", "2px")
       .style("stroke", function(d){ return "hsl(" + generateHue(d) + ",100%,52%)"})
-      .on("mouseover", displayInfo)
-      .on("mouseout", hideInfo)
-      .append("svg:title")
-        .html(function(d){return d.name + " " + d.closest_approach;})
+      // .on("mouseover", displayInfo)
+      // .on("mouseout", hideInfo)
+    
+    var labels = asteroidField.append("g");
+
+    var nameLable = labels.selectAll("g.name-label")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "name-label")
+      .attr("x", function(d) { return timeScale(dateTimeFn(d))+radiusScale(radiusFn(d))+5})
+      .attr("y", function(d) { return missDistScale(distanceFn(d))+5 })
+      .text(function(d){ return d.name; })
+
+    var distLabel = labels.selectAll("g.dist-label")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "dist-label")
+      .attr("x", function(d) { return timeScale(dateTimeFn(d))+radiusScale(radiusFn(d))+5})
+      .attr("y", function(d) { return missDistScale(distanceFn(d))+15 })
+      .text(function(d){ return decimalFormat(d.miss_distance) + " LD"; })
+
+
 
     asteroidGroup.selectAll("g.asteroid")
       .data(spaceRocks, function(d) {
@@ -395,50 +425,14 @@ function renderAsteroidsToScale(spaceRocks){
       .attr("offset", "70%")
       .attr("style", function(d){ return "stop-color:hsl(" + generateHue(d) + ",100%,52%);stop-opacity:1" })
 
-  
+
+
     //**************************//
     //******* FUNCTIONS ********//
     //**************************//
 
     function generateHue(d){
       return absMagScale(absMagnitudeFn(d));
-    }
-
-
-    function displayInfo(d){
-
-      d3.select("#asteroid-info").classed("hidden",false);
-
-      d3.select("#asteroid-info")
-        .style("left", function() { 
-          var left = w/2;
-          left = left + "px";
-          return left;
-        })
-        .style("top", function() { 
-          var top = missDistScale(distanceFn(d));
-          top = top + "px";
-          return top;
-        })
-        .transition()
-        .duration(500)
-        .style("opacity", 1)
-
-      d3.select("#a-name").html("<span class='big bold'>" + d.name + "</span>");
-      d3.select("#a-date").html("Closest Approach Date: <span class='bold'>" + dateFn(d) + "</span>");
-      d3.select("#a-distance").html("Miss Distance: <span class='bold'>" + decimalFormat(d.miss_distance) + "</span> LD");
-      d3.select("#a-diameter").html("Avg. Est. Diameter: <span class='bold'>" + decimalFormat(d.estimated_diameter*1000) + "</span> m");
-      d3.select("#a-velocity").html("Relative Velocity: <span class='bold'>" + decimalFormat(d.kilometers_per_second) + "</span>" + "</span> km/s");
-      d3.select("#a-magnitude").html("Absolute Magnitude: <span class='bold'>" + decimalFormat(d.absolute_magnitude_h) + "</span> H");
-    };
-
-    function hideInfo(d){
-      d3.select("#asteroid-info")
-        .transition()
-        .duration(500)
-        .style("opacity", 0)
-
-      d3.select("#asteroid-info").classed("hidden",true);
     }
 
 };
