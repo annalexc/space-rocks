@@ -4,20 +4,24 @@
     <title>Space Rocks!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/styles/jquery-ui.css">
+     -->
     <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type='text/javascript' src='/d3/d3.js'></script>
     <script type='text/javascript' src='/three.js/build/three.min.js'></script>
-    <script type='text/javascript' src='/tween.js/src/Tween.js'></script>
+    <!-- <script type='text/javascript' src='/tween.js/src/Tween.js'></script> -->
     <script type='text/javascript' src='/three.js/renderers/CanvasRenderer.js'></script>
     <script type='text/javascript' src='/three.js/renderers/Projector.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='/assets/js/earth.js'></script>
     <script type='text/javascript' src='/assets/js/scripts.js'></script>
-    <script type='text/javascript' src='/assets/js/parse-asteroids.js'></script>
-    <script type='text/javascript' src='/assets/js/render-asteroids.js'></script>
-    <script type='text/javascript' src='/assets/js/sampleJSONdata.js'></script>
-    <script type='text/javascript' src='/assets/js/pull-NASAdata.js'></script>
+    <script type='text/javascript' src='/assets/js/renderAsteroids.js'></script>
+  <!--   <script type='text/javascript' src='/assets/js/sampleJSONdata.js'></script> -->
+    <script type='text/javascript' src='/assets/js/processNASAdata.js'></script>
+
   </head>
-  <body>
+  <body class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
     <!-- Starry, starry night -->
     <div id="space-bg">
       <div id="star-img"></div>
@@ -29,16 +33,31 @@
     <button id="scale">SCALE</button>
 
 
+
+
     <div id="wrapper">
       <!-- Fly me to the moon -->
       <div id="moon">
-        <img src="/assets/images/moon.png">
+        <!-- <img src="/assets/images/moon.png"> -->
       </div>
-      <div id="asteroids">
+      <div id="lunar-distance">
         <div id="asteroid-field"></div>
       </div>
       <!-- Beatiful Big Blue -->
-      <div id="earth"></div>  
+      <div id="earth"></div>
+
+      <div id="asteroid-all"></div>
+      <div id="scrollbar">
+        <div id="guide"></div>
+        <div id="scroll-msg">
+          <p>Approx. Distance to Earth<br /><span>384402 km</span></p>
+        </div>
+        <div id="scroll">      
+          <img src="/assets/images/sloth.svg">
+        </div>
+        <div id="bar"></div>
+      </div>
+
     </div>
 
 
@@ -47,8 +66,8 @@
         <!-- <img src="/assets/images/earth.png"> -->
         <div id="earth-img"></div>
       </div>  
-      <div id="asteroids-scaled">
-        <div id="asteroid"></div>
+      <div id="lunar-distance-scaled">
+        <div id="asteroids-scaled"></div>
       </div>
       <div id="moon-scaled">
         <div id="moon-img"></div>
@@ -65,7 +84,7 @@
       <div id="a-magnitude"></div>
     </div>
 
-    <script type='text/javascript' src='/assets/js/earth.js'></script>
+    
 
   </body>
 </html>
