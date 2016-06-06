@@ -1,5 +1,6 @@
-bower_components/three.js/examples
+bower_components/three.js
 client/assets/js/globe.js
+client/assets/js/earth.js
 client/assets/js/Detector.js
 client/assets/js/sampleJSONdata.js
 client/assets/js/sampleNASAdata.js

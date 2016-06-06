@@ -29,11 +29,12 @@ h2 {
 }
 #intro {
   position: absolute;
-  background-color: rgba(0,0,0,0.45);
+  /*background-color: rgba(0,0,0,0.45);*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 0;
 }
 
 #title {
@@ -54,7 +55,8 @@ h2 {
 
 #years {
   position: fixed;
-  width: 100%;
+  width: 80%;
+  margin: 0 10%;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -62,7 +64,7 @@ h2 {
 }
 
 .huge { font-size: 5rem; }
-.large { font-size: 4rem; }
+.large { font-size: 3.75rem;}
 .medium { font-size: 3rem; }
 .small { font-size: 1rem; }
 
@@ -83,7 +85,7 @@ h2 {
 }
 
 .bottom.right:hover span, .bottom.left:hover span, .link:hover, .year:hover {
-  color: rgba(255,255,255,1);
+  color: rgba(120,187,255,1);
 }
 
 .fadein {
@@ -107,10 +109,10 @@ text {
 circle {
   cursor: pointer;
 }
+#space-bg { position:fixed; top: 0; height: 200vh; }
 
-
-#space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3 {
-  position: fixed;
+#star-img, #star-overlay, #stars1, #stars2, #stars3 {
+  position: absolute;
   top: 0;
   height: 200vh;
 }
@@ -176,9 +178,16 @@ circle {
   position: absolute;
   height: 205px; 
   overflow: hidden;
-  bottom: -210px;
+  bottom: -270px;
   opacity: 0.9;
 }
+
+#earth img {
+  margin: 0 auto;
+  display: block;
+  width: 600px;
+}
+
 
 #asteroid-all {
   position: absolute;
@@ -199,7 +208,7 @@ circle {
 /* SCALED VIEW STYLYING */
 
 #wrapper-scaled {
-  background-color: rgba(0,0,0,0.25);
+  z-index: 0;
 }
 #earth-scaled, #moon-scaled, #lunar-distance-scaled {
   position: absolute;
@@ -406,12 +415,19 @@ circle {
   line-height: 40px;
 }
 
+.w-to-b, .w-to-b-fade {
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.9);
+}
 .w-to-b {
-  color: hsla(0, 0%, 100%, 0.9);
+  color: hsl(0, 0%, 100%);
 }
 
 .w-to-b-fade {
-  color: hsla(0, 0%, 100%, 0.65);
+  color: hsla(0, 0%, 100%, 0.8);
+}
+
+.w-to-b-fade:hover {
+  color: rgba(120,187,255,0.9) !important;
 }
 
 #velocity {

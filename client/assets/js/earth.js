@@ -4,8 +4,6 @@ function renderGlobe(){
   var width  = window.innerWidth,
       height = 600;
 
-  var rotation = 10;  
-
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(39, width / height, 1, 1000);
   camera.position.z = 1.5;
@@ -22,7 +20,7 @@ function renderGlobe(){
   scene.add(light);
 
   var earthSphere = createSphere(0.5, 32, '/assets/images/world.jpg');
-  earthSphere.rotation.y = rotation; 
+  earthSphere.rotation.y = 12; 
   scene.add(earthSphere)
 
   $(earth).append(renderer.domElement);

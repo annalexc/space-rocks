@@ -8,7 +8,7 @@ function getNASAdata(startDate, endDate){
   console.log("GETTING DATA FOR YOU!");
   var getAsteroids = setInterval(function(){
     console.log(count);
-    if (count == 36){
+    if (count == 50){
       clearInterval(getAsteroids);
     } else {
         getData(link, function(response){

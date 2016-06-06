@@ -7,12 +7,13 @@
     <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type='text/javascript' src='/d3/d3.js'></script>
-    <script type='text/javascript' src='/three.js/build/three.min.js'></script>
+    <!-- <script type='text/javascript' src='/three.js/build/three.min.js'></script> -->
     <!-- <script type='text/javascript' src='/tween.js/src/Tween.js'></script> -->
-    <script type='text/javascript' src='/three.js/renderers/CanvasRenderer.js'></script>
-    <script type='text/javascript' src='/three.js/renderers/Projector.js'></script>
+    <!-- <script type='text/javascript' src='/three.js/renderers/CanvasRenderer.js'></script>
+     -->
+    <!-- <script type='text/javascript' src='/three.js/renderers/Projector.js'></script> -->
     <script type='text/javascript' src='/assets/js/jquery-ui.min.js'></script>
-    <script type='text/javascript' src='/assets/js/earth.js'></script>
+    <!-- <script type='text/javascript' src='/assets/js/earth.js'></script> -->
     <script type='text/javascript' src='/assets/js/scripts.js'></script>
     <script type='text/javascript' src='/assets/js/renderAsteroids.js'></script>
     <script type='text/javascript' src='/assets/js/processNASAdata.js'></script>
@@ -26,6 +27,18 @@
       <div id="stars3"></div>
     </div>
 
+    <div id="wrapper-scaled">
+      <div id="earth-scaled">
+        <!-- <img src="/assets/images/earth.png"> -->
+        <div id="earth-img"></div>
+      </div>  
+      <div id="lunar-distance-scaled">
+        <div id="asteroids-scaled"></div>
+      </div>
+      <div id="moon-scaled">
+        <div id="moon-img"></div>
+      </div>
+    </div>
 
     <!-- Intro screen -->
     <div id="intro">
@@ -40,10 +53,11 @@
       </div>
     </div>
 
-
     <div id="wrapper" class="invisible">
       <!-- Beatiful Big Blue -->
-      <div id="earth"></div>
+      <div id="earth">
+        <img src="/assets/images/earth.png">
+      </div>
       <!-- <div id="asteroid-field"></div> -->
       <div id="asteroid-all"></div>
 
@@ -111,19 +125,6 @@
 
     </div>
 
-
-    <div id="wrapper-scaled" class="hidden">
-      <div id="earth-scaled">
-        <!-- <img src="/assets/images/earth.png"> -->
-        <div id="earth-img"></div>
-      </div>  
-      <div id="lunar-distance-scaled">
-        <div id="asteroids-scaled"></div>
-      </div>
-      <div id="moon-scaled">
-        <div id="moon-img"></div>
-      </div>
-    </div>
 
     <div id="asteroid-info" class="invisble">
       <div id="a-name"></div>

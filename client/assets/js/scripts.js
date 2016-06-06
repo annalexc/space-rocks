@@ -20,17 +20,13 @@ $(function(){
   animateHamburger();
 
 
-
-
-  
-
   //************************************//
   //* ADD ASTEROIDS BASED ON SELECTION *//
   //************************************//
   // displayAsteroidsByYearToScale(2016);
   
   window.onresize = scrollBarDragHandler;
-  renderGlobe();
+  // renderGlobe();
 
 }); // $(function(){}); END
 
@@ -161,12 +157,23 @@ function scrollBarDragHandler(){
       }
 
       $(earth).css({
-          "bottom" : -210 + pctScrolled3*210
+          "bottom" : -300 + pctScrolled3*270
         });
       
       $(containerAll).css({
         "margin-top" : 0 - pctScrolled2*(hAll)*0.462
       });
+
+      $(starField).css({
+        "top" : 0 - pctScrolled2*(hAll/8)
+      });
+
+      // $(".w-to-b").css({
+      //   "color" : "hsla(0,0%," + (1-pctScrolled3)*100 + "%,0.9)"
+      // })
+      // $(".w-to-b-fade").css({
+      //   "color" : "hsla(0,0%," + (1-pctScrolled3)*100 + "%,0.65)"
+      // })
 
     // };
     },
@@ -195,10 +202,12 @@ function toggleScaleViewHandler(){
 };
 
 function linkSelectHandler(toFadeOut, toFadeIn){
+
   var yearMenu = $("#year-menu");
   if($(yearMenu).hasClass("invisible")){
     $(yearMenu).removeClass("invisible");
   }
+
   $('.year').on('click', function(){
     year = $(this).text();
     console.log(year);
@@ -210,6 +219,10 @@ function linkSelectHandler(toFadeOut, toFadeIn){
 };
 
 function buttonClickHandler(){
+  if(!$(wrapperScaled).hasClass("hidden")){
+    $(wrapperScaled).addClass("hidden");
+  }
+
   var reload = $("#reload");
   var fly = $("#fly");
   var yearMenu = $("#year-menu");
