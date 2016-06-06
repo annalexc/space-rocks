@@ -1,12 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);
 @import url(https://fonts.googleapis.com/css?family=Slabo+27px);
-@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
 
 * {
   box-sizing: border-box;
 }
 
-html, body, #space-data, #earth, #space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3, #wrapper, #asteroid-field {
+html, body, #intro, #earth, #space-bg, #star-img, #star-overlay, #stars1, #stars2, #stars3, #wrapper, #asteroid-field {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -14,17 +15,80 @@ html, body, #space-data, #earth, #space-bg, #star-img, #star-overlay, #stars1, #
 
 body {
   background-color: black;
-  /*background: radial-gradient(ellipse at bottom, rgb(27,39,53) 0%, black 80%);*/
   color: white;
   font: 1rem 'Slabo 27px';
 }
 
 
-button {
-  position: fixed;
-  bottom: 10px;
-  z-index: 1000;
+h2 {
+  margin: 0 auto;
+  padding: 2px;
+  /*font-weight: 400;*/
+  width: 100px;
+  display: inline-block;
+}
+#intro {
+  position: absolute;
+  background-color: rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+#title {
+  font: 5rem 'Josefin Sans';
+  color: white;
+  margin: 0 auto;
+}
+
+#intro img {
+  height: 62px;
+}
+
+#intro p{
+  width: 674px;
+  font: 1.21rem 'Open Sans Condensed';
+  text-align: justify;
+}
+
+#years {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  bottom: 100px;
+}
+
+.huge { font-size: 5rem; }
+.large { font-size: 4rem; }
+.medium { font-size: 3rem; }
+.small { font-size: 1rem; }
+
+.text, .link, .year {
+  font-family: 'Oswald';
+  font-weight: 400;
+  color: rgba(255,255,255,0.425);
+  opacity: 0;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: color 0.7s ease;
+}
+
+.text {
+  cursor: initial;
+  color: rgba(255,255,255,0.825);
+}
+
+.bottom.right:hover span, .bottom.left:hover span, .link:hover, .year:hover {
+  color: rgba(255,255,255,1);
+}
+
+.fadein {
+  animation: fadein 0.5s linear 1;
+  opacity: 1;
 }
 
 #scale {
@@ -59,7 +123,7 @@ circle {
 #star-img:after {
   content: ' ';
   display: inline-block;
-  background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.55) 0%, rgba(0,0,0,0.85) 75%);
+  background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.85) 75%);
   width: 100%;
   height: 100%;
 }
@@ -74,12 +138,12 @@ circle {
   overflow: hidden;
 }
 
-#wrapper {
+/*#wrapper {
   height: 100vh;
-}
+}*/
 
 
-#moon, #lunar-distance, #earth {
+/*#moon, #lunar-distance, #earth {
   position: relative;
   width: 100%;
   float: left;
@@ -93,7 +157,7 @@ circle {
   position: absolute;
   top: -81.9px;
   width: 163.8px;
-  /*clip: rect(81.9px,163.8px,163.8px,0px);*/
+  clip: rect(81.9px,163.8px,163.8px,0px);
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -102,19 +166,24 @@ circle {
 
 #lunar-distance { 
   height: 80vh; 
-  /*overflow: hidden;*/
-
 }
 
 #asteroid-field {
   height: 100%;
-  /*height: 150vh;*/
+}*/
+
+#earth{ 
+  position: absolute;
+  height: 205px; 
+  overflow: hidden;
+  bottom: -210px;
+  opacity: 0.9;
 }
 
 #asteroid-all {
   position: absolute;
-  width: 100%;
-  height: 170vh;
+  width: 100vw;
+  height: 1251px;
   top: 0;
 }
 
@@ -122,10 +191,9 @@ svg {
   overflow: visible;
 }
 
-#earth{ 
-  height: 30vh; 
-  overflow: hidden;
-  /*background-color: rgba(45,201,11,0.2)*/
+circle {
+  stroke: white;
+  stroke-width: 1;
 }
 
 /* SCALED VIEW STYLYING */
@@ -197,13 +265,17 @@ svg {
   min-height: min-content;
   height: auto;
   width: auto;
-  font: 1rem 'Oswald';
+  font: 1.1rem 'Open Sans Condensed';
   color: white;
-  opacity: 0;
+  background-color: rgba(0,0,0,0.45);
+  padding: 8px;
+  border-radius: 0.5em;
+  /*opacity: 0;*/
 }
 
 .bold {
   font-weight: 700;
+  /*color: rgb(105,180,255);*/
   color: hotpink;
 }
 
@@ -223,50 +295,47 @@ svg {
 }
 
 .name-label, .dist-label {
-  font-family:'Oswald';
+  font-family:'Open Sans Condensed';
 }
 
 .name-label {
-  font-size: 0.75rem;
-  fill: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  fill: rgba(255,255,255,0.7);
 }
 
-.dist-label{
-  font-size: 0.68rem;
-  fill: hotpink;
+.moon-label{
+  font-size: 1.5rem;
+  fill: white;
 }
-/*.intro-moon {
-  animation: setMoon 4s linear 1;
-}*/
-
 
 #scrollbar {
   position: fixed;
-  top: 11vh;
-  height: 75vh;
+  top: 81px;
+  height: 551px;
   right: 50px;
-  width: 15px;
+  width: 20px;
   overflow: all;
+  z-index: 1000;
 }
 
 #bar {
   margin: 0 auto;
-  width: 4px;
+  width: 6px;
   height: 100%;
   background-color: rgba(255,255,255,0.5);
 }
 
 #bar, #scroll {
-  border-bottom-left-radius: 0.35em;
-  border-bottom-right-radius: 0.35em;
-  border-top-left-radius: 0.35em;
-  border-top-right-radius: 0.35em;
+  border-bottom-left-radius: 0.45em;
+  border-bottom-right-radius: 0.45em;
+  border-top-left-radius: 0.45em;
+  border-top-right-radius: 0.45em;
 }
 
 #scroll, #scroll-msg, #guide {
   position: fixed;
   /*width: 100%;*/
-  top: 11vh;
+  top: 81px;
   min-width: min-content;
 }
 
@@ -293,7 +362,7 @@ svg {
 }
 #scrollbar p {
   text-align: right;
-  font: 1.2rem 'Slabo 27px';
+  font: 1.1rem 'Slabo 27px';
   line-height: 1;
   right: 107px;
   margin: 10px auto 0;
@@ -313,6 +382,195 @@ svg {
   margin-top: -10px;
 }
 
+#year-menu{
+  width: 100%;
+  position: fixed;
+  bottom: 12px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+}
+
+.left, .right, .center {
+  position: relative;
+  text-align: center;
+  height: 90px;
+  line-height: 90px;
+  width: 185px;
+}
+
+.top {
+  top: 5px;
+  width: 240px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.w-to-b {
+  color: hsla(0, 0%, 100%, 0.9);
+}
+
+.w-to-b-fade {
+  color: hsla(0, 0%, 100%, 0.65);
+}
+
+#velocity {
+  position: fixed;
+  top: 0;
+  right: 33px;
+  width: 100px;
+  height: 75px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#velocity img {
+  width: 45px;
+  height: 45px;
+  opacity: 0.7;
+  padding: 1px;
+}
+
+#velocity img:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+
+
+#velocity span {
+  font: 1.5rem 'Josefin Sans';
+}
+
+#hamburger-button {
+  position: absolute;
+  vertical-align: middle;
+  height: 45px;
+  width: 45px;
+  margin: 25px 0 0 300px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  z-index: 100;
+}
+
+#hamburger-button:hover {
+  cursor: pointer;
+}
+
+#hamburger-button > span {
+  margin-bottom: 5px;
+  height: 5px;
+  width: 35px;
+  background-color: rgba(255,255,255,0.5);
+  display: block;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#hamburger-button.open {
+  margin-right: -3px;
+}
+
+
+#hamburger-button.open span:nth-child(1) {
+  -webkit-transform: translateY(11px) rotate(45deg);
+  -moz-transform: translateY(11px) rotate(45deg);
+  -ms-transform: translateY(11px) rotate(45deg);
+  -o-transform: translateY(11px) rotate(45deg);
+  transform: translateY(11px) rotate(45deg);
+  background-color: rgba(255,255,255,0.7); 
+}
+
+#hamburger-button.open span:nth-child(2) {
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+}
+
+#hamburger-button.open span:nth-child(3) {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+  -moz-transform: translateY(-9px) rotate(-45deg);
+  -ms-transform: translateY(-9px) rotate(-45deg);
+  -o-transform: translateY(-9px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
+  background-color: rgba(255,255,255,0.7);          
+}
+nav#main-menu {
+  height: 100%;
+  width: 350px;
+  font-size: 1.35rem;
+  position: fixed;
+  left: -270px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  overflow: scroll;
+}
+
+
+nav#main-menu.open {
+  left: 0px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#main-menu #information{
+  opacity: 0;
+}
+#main-menu.open #information{
+  opacity: 1;
+}
+
+
+#information {
+  width: 300px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font: 1.1rem 'Open Sans Condensed';
+  font-weight: 400;
+}
+
+#information > h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 10px 0 20px;
+  margin: 0;
+  border-top: 1px solid rgba(255,255,255,0.45);
+}
+
+#gradient {
+  position: relative;
+  height: 15px;
+  width: 100%;
+  background: linear-gradient(to right, red, orange, yellow);
+  border-radius: 0.25em;
+}
+
+.invisible {
+  opacity: 0;
+  z-index: -1;
+  /*transition: opacity 0.5s linear 1;*/
+}
+
+p.l, p.r {
+  margin: 0 0 20px 0; 
+  width: 49%;
+  font-size: 0.9rem; 
+  display: inline-block;
+}
+p.l{ text-align: left; }
+p.r{ text-align: right; }
+
 @keyframes starFlight {
   from { 
     -webkit-transform:rotate(360deg);
@@ -331,12 +589,11 @@ svg {
   }
 }
 
-@keyframes setMoon {
+@keyframes fadein {
   from{
-    top: 25vh;
+    opacity: 0;
   }
   to{
-    top: -81.9px;
-    /*clip: rect(81.9px,163.8px,163.8px,0px);*/
+    opacity: 1;
   }
 }

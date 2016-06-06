@@ -4,8 +4,6 @@
     <title>Space Rocks!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <!-- <link rel="stylesheet" type="text/css" href="/assets/styles/jquery-ui.css">
-     -->
     <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type='text/javascript' src='/d3/d3.js'></script>
@@ -17,11 +15,9 @@
     <script type='text/javascript' src='/assets/js/earth.js'></script>
     <script type='text/javascript' src='/assets/js/scripts.js'></script>
     <script type='text/javascript' src='/assets/js/renderAsteroids.js'></script>
-  <!--   <script type='text/javascript' src='/assets/js/sampleJSONdata.js'></script> -->
     <script type='text/javascript' src='/assets/js/processNASAdata.js'></script>
-
   </head>
-  <body class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <body>
     <!-- Starry, starry night -->
     <div id="space-bg">
       <div id="star-img"></div>
@@ -29,34 +25,89 @@
       <div id="stars2"></div>
       <div id="stars3"></div>
     </div>
-    <button id="fly">VELOCITY</button>
-    <button id="scale">SCALE</button>
 
 
-
-
-    <div id="wrapper">
-      <!-- Fly me to the moon -->
-      <div id="moon">
-        <!-- <img src="/assets/images/moon.png"> -->
+    <!-- Intro screen -->
+    <div id="intro">
+      <h1 id="title">S P A C E R <span><img src="/assets/images/asteroid.svg"></span> C K S</h1>
+      <p>Space Rocks is a visualization of asteroids that have had close approaches to Earth within one Lunar Distance (384,402 km) in the last five years, based on NASA Near-Earth Object (NEO) data. Click on a year to begin.</p>
+      <div id="years">
+        <h1 class="large year">2012</h1>
+        <h1 class="large year">2013</h1>
+        <h1 class="large year">2014</h1>
+        <h1 class="large year">2015</h1>
+        <h1 class="large year">2016</h1>
       </div>
-      <div id="lunar-distance">
-        <div id="asteroid-field"></div>
-      </div>
+    </div>
+
+
+    <div id="wrapper" class="invisible">
       <!-- Beatiful Big Blue -->
       <div id="earth"></div>
-
+      <!-- <div id="asteroid-field"></div> -->
       <div id="asteroid-all"></div>
+
+      <!-- Scrollbar -->
       <div id="scrollbar">
-        <div id="guide"></div>
+        <div id="guide" class="invisible"></div>
         <div id="scroll-msg">
-          <p>Approx. Distance to Earth<br /><span>384402 km</span></p>
+          <p>~ Distance to Earth<br /><span>384402 km</span></p>
         </div>
         <div id="scroll">      
           <img src="/assets/images/sloth.svg">
         </div>
         <div id="bar"></div>
       </div>
+      <!-- Options Menu -->
+      <div id="velocity">
+        <span>Fly?</span>
+        <img src="/assets/images/play.svg" id="fly">
+        <img src="/assets/images/stop.svg" id ="reload" class="hidden">
+      </div>
+      <!-- Year Menu -->
+      <div id="year-menu">
+        
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+      </div>
+      <!-- Navigation -->
+      <nav id="main-menu">
+        <div id="hamburger-button" class="slide">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="information">
+          <h2>Information</h2>
+          <h3><span class="bold">Lunar distance (LD)</span> is as a unit of measure in astronomy. It is the average distance from the center of Earth to the center of the Moon.</h3>
+
+          <h3>The <span class="bold">absolute magnitude (H)</span> of an asteroid is a number that is a measure of its brightness as seen by an observer on Earth. The brighter an object appears, the lower its magnitude value (i.e. inverse relation).</h3> 
+          <div id="gradient"></div>
+          <p class="l">Lower Brightness</p>
+          <p class="r">Higher Brightness</p>
+
+          <h3>Maximum and minimum diameter estimates are based on an asteroid's absolute magnitude. The <span class="bold">average estimated diameter (m)</span> was derived by taking the average of those values. In this visualization, 1 pixel represents approximately 1 meter.</h3>
+          <svg width="250" height="75">
+            <defs>
+              <radialGradient cx="40%" cy="40%" r="120%" fx="100%" fy="40%" id="grad0">
+                <stop offset="0%" style="stop-color:rgb(240,240,240);stop-opacity:0.95"></stop>
+                <stop offset="70%" style="stop-color:hsl(0,100%,52%);stop-opacity:1"></stop>
+              </radialGradient>
+              <radialGradient cx="40%" cy="40%" r="120%" fx="100%" fy="40%" id="grad2">
+                <stop offset="0%" style="stop-color:rgb(240,240,240);stop-opacity:0.95"></stop>
+                <stop offset="70%" style="stop-color:hsl(52,100%,52%);stop-opacity:1"></stop>
+              </radialGradient>
+            </defs>
+            <circle cx="16" cy="15" r="5" fill="url(#grad0)" />
+            <circle cx="16" cy="44" r="15" fill="url(#grad2)" />
+            <text class="info" x="34" y="21" fill="white">~10m Avg Est Diameter</text>
+            <text class="info" x="34" y="50" fill="white">~30m Avg Est Diameter</text>
+          </svg>
+          <h3>Though different concepts, an asteroid's <span class="bold">relative velocity (km/s)</span> is depicted alongside the moon's mean orbital velocity (1.022 km/s) purely for visual comparison. In this visualization, the moon and the asteroids will travel approximately 50% of the viewport width, which will represent 100 km. The moon, travelling at about ~1 km/s will take 100 seconds to travel that distance.</h3>
+
+        </div>
+      </nav> 
 
     </div>
 
@@ -74,17 +125,19 @@
       </div>
     </div>
 
-
-    <div id="asteroid-info" class="hidden">
+    <div id="asteroid-info" class="invisble">
       <div id="a-name"></div>
       <div id="a-date"></div>
-      <div id="a-diametaer"></div>
+      <div id="a-diameter"></div>
       <div id="a-distance"></div>
       <div id="a-velocity"></div>
       <div id="a-magnitude"></div>
     </div>
 
-    
+    <!-- <button id="fly">VELOCITY</button>
+    <button id="scale">SCALE</button>
+ -->
+     
 
   </body>
 </html>
