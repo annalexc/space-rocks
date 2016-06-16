@@ -279,6 +279,7 @@ circle {
   background-color: rgba(0,0,0,0.45);
   padding: 8px;
   border-radius: 0.5em;
+  display: none;
   /*opacity: 0;*/
 }
 
@@ -586,6 +587,17 @@ p.l, p.r {
 }
 p.l{ text-align: left; }
 p.r{ text-align: right; }
+
+
+.hello {
+  position: fixed;
+  top: 150px;
+  right: 116px;
+  height: 75px;
+  width: 232px;
+  font-family: 'Slabo 27px';
+  text-align: right;
+}
 
 @keyframes starFlight {
   from { 

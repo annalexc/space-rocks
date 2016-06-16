@@ -18,7 +18,7 @@ $(function(){
   scrollBarDragHandler();
   toggleScaleViewHandler();
   animateHamburger();
-
+  // appendHelloMessage();
 
   //************************************//
   //* ADD ASTEROIDS BASED ON SELECTION *//
@@ -298,6 +298,12 @@ function animateHamburger(){
   });
 };
 
+
+// function appendHelloMessage(){
+//   var helloMessage = $('<div>').addClass("hello small text fadein");
+//   helloMessage.text("Take the slothstronaut to earth! ---->");
+//   $(wrapper).append(helloMessage);
+// }
 
 
 
