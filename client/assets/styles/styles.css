@@ -61,6 +61,7 @@ h2 {
   display: flex;
   justify-content: center;
   bottom: 100px;
+  left: 0;
 }
 
 .huge { font-size: 5rem; }
