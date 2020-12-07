@@ -4,4 +4,4 @@ client/assets/js/earth.js
 client/assets/js/Detector.js
 client/assets/js/sampleJSONdata.js
 client/assets/js/sampleNASAdata.js
-node_modules
+node_modules/

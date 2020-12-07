@@ -3,9 +3,18 @@ var express         = require('express'),
     path            = require('path'),
     mongoose        = require('mongoose'),
     app             = express(),  
-    apiAsteroidRouter = require('./server/routes/api/asteroids.js');
+    apiAsteroidRouter = require('./server/routes/api/asteroids.js'),
+    uri = process.env.MONGODB_URI || "mongodb://localhost/spacerocks";
 
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/spacerocks" );
+
+
+mongoose.connect(uri, { useUnifiedTopology: true });
+
+const connection = mongoose.connection;
+connection.on('error', (error) => {
+  console.log('Error connecting to MongoDB', error);
+});
+
 
 app.set('views', path.join(__dirname, 'client/views'));
 
